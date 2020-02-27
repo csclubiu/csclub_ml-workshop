@@ -2,16 +2,16 @@
 # Author:   Dante Razo, drazo
 # Modified: 2020-02-27
 from sklearn.svm import SVC
-from sklearn.utils import shuffle
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.utils import shuffle
 import sklearn.metrics
 import random
 
 
 # Import data
-# Challenge: remove httP://t.co/* links
+# Challenge: remove http://t.co/* links
 def get_data():
-    data_dir = "./data/"
+    data_dir = "../data/"
     a = open(f"{data_dir}X_train", "r", encoding="utf-8")
     X_train = a.read().splitlines()
 
@@ -58,12 +58,18 @@ for i in ngram_upper_bound:
     print("Training complete.") if verbose else None
 
     # Testing + results
+    """
     rand_acc = sklearn.metrics.balanced_accuracy_score(y_test, [random.randint(0, 1) for x in range(0, len(y_test))])
     acc_score = sklearn.metrics.accuracy_score(y_test, svm.predict(X_test))
 
     print(f"\nResults for ({analyzer}, ngram_range(1,{i}):")
     print(f"Baseline Accuracy: {rand_acc:}")  # random
     print(f"Testing Accuracy:  {acc_score:}")
+    """
+
+    # Testing + results
+    print(f"Classification Report [{analyzer}, ngram_range(1,{i})]:\n "
+          f"{sklearn.metrics.classification_report(y_test, svm.predict(X_test), digits=6)}")
 
 """ RESULTS & DOCUMENTATION
 # KERNEL RESULTS (gamma="auto", analyzer=word, ngram_range(1,3))
