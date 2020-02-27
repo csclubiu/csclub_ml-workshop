@@ -57,7 +57,7 @@ X_test, y_test = shuffle(X_test, y_test)
 
 # Fitting the model
 print("Training SVM...")
-svm = SVC(kernel=kernel, gamma="auto")  # TODO: tweak params
+svm = SVC(kernel=kernel, gamma="auto")
 svm.fit(X_train, y_train)
 print("Training complete.")
 
